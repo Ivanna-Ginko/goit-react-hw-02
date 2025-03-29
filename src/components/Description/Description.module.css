@@ -1,0 +1,13 @@
+
+.titul {
+    border: 1px solid firebrick;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 5px 5px 5px 5px rgb(215, 122, 122);
+}
+
+.text {
+    color: brown;
+    font-weight: 700;
+    font-size: large;
+}
