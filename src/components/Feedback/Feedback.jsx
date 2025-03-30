@@ -2,8 +2,7 @@ import css from "./Feedback.module.css"
 
 const Feedback = (props) => {
 
-    if(props.totalFeedback ===0) {return <p className={css.feedlist}>No feedback yet </p>} 
-    let goodPC = Math.round((props.data.good / props.totalFeedback) * 100)
+    
     return (
         <>
             <ul>
@@ -11,7 +10,7 @@ const Feedback = (props) => {
             <li className={css.feedlist}> Neutral: {props.data.neutral} </li>
             <li className={css.feedlist}> Bad: {props.data.bad} </li>
             <li className={css.feedlist}>Total: {props.totalFeedback} </li>
-            <li className={css.feedlist}>Positiv: {goodPC}% </li>
+            <li className={css.feedlist}>Positiv: {props.goodPC}% </li>
             </ul> 
         </>
     )
