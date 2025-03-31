@@ -18,8 +18,6 @@ function App() {
     if (p==='bad')   {setStateData({... stateData, bad : stateData.bad +1})} 
     if (p==='reset') {setStateData({ good: 0, neutral: 0,  bad: 0  } )} 
  
-    localStorage.setItem(localTag, JSON.stringify(stateData))
-    
   }
 
   useEffect(()=>{
@@ -29,6 +27,10 @@ function App() {
       setStateData( data )  
     }
   },[])
+
+  useEffect (() => {
+    localStorage.setItem(localTag, JSON.stringify(stateData))
+  },[stateData])
 
   let totalFeedback = stateData.good+stateData.bad+stateData.neutral
   let goodPC = 0
