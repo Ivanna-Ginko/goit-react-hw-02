@@ -5,30 +5,27 @@ import Options from './components/Options/Options'
 import Feedback from './components/Feedback/Feedback'
 import Notification from './components/Notification/Notification'
 
-const localTag = 'dz_react_1'
+const localTag = 'dz_react_2'
 
 function App() {
-  //const [totalFeedback,settotalFeedback] = useState( 0 )
-  const [stateData,setStateData] = useState({ good: 0, neutral: 0,  bad: 0  })
+  
+  const [stateData,setStateData] = useState(() => {
+    let data = localStorage.getItem(localTag)
+      
+    if (data) return JSON.parse(data);
+    
+      return {good: 0, neutral: 0, bad: 0,};  
+  }) 
 
   const updateFeedback = (p) =>{
-
-    if (p==='good')  {setStateData ({... stateData, good : stateData.good +1}) } 
-    if (p==='neutral')   {setStateData({... stateData, neutral : stateData.neutral +1})} 
-    if (p==='bad')   {setStateData({... stateData, bad : stateData.bad +1})} 
-    if (p==='reset') {setStateData({ good: 0, neutral: 0,  bad: 0  } )} 
- 
+   
+    if (p==='reset') {setStateData({ good: 0, neutral: 0,  bad: 0  } )}
+    else { setStateData ({... stateData, [p] : stateData[p] +1})
+    }
   }
 
-  useEffect(()=>{
-    let s = localStorage.getItem(localTag)
-    if(s){
-      let data = JSON.parse(s)
-      setStateData( data )  
-    }
-  },[])
-
-  useEffect (() => {
+  
+    useEffect (() => {
     localStorage.setItem(localTag, JSON.stringify(stateData))
   },[stateData])
 
